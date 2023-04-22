@@ -1,0 +1,26 @@
+div[id^="gpt-button-wrapper"] {
+  padding-left: 72px;
+  padding-top: 10px;
+}
+
+button[id^="gpt-button"] {
+  display: inline-block;
+  color: rgb(181, 186, 193);
+  padding: 2px 6px;
+  background-color: #2b2d31;
+  border-color: #000000;
+  border-width: 1px;
+  border-radius: 8px 8px 8px 8px;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+button[id^="gpt-button"]:hover {
+  background-color: #2b2d31;
+  border-width: 1px;
+  border-color: rgba(255, 255, 255, 0.8);
+  color: rgba(219, 222, 225, 1);
+}
+
+
+/*# sourceMappingURL=/styles.dd855970.css.map */

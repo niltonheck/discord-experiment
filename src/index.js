@@ -1,5 +1,3 @@
-import "./styles.css";
-
 function addGPTButton() {
   const chatBubbles = document.querySelectorAll("li[id*=chat-messages]");
 
