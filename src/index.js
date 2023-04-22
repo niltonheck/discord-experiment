@@ -1,11 +1,6 @@
 function addGPTButton() {
   const chatBubbles = document.querySelectorAll("li[id*=chat-messages]");
 
-  /**
-   * We need to:
-   *  - Keep track of new messages
-   *  - Delete addEventListener as messages are removed.
-   */
   for (let i = 0; i < chatBubbles.length; i++) {
     const chatBubble = chatBubbles[i];
     const content = chatBubble.querySelector(
@@ -45,7 +40,21 @@ function addGPTButton() {
   }
 }
 
-// setTimeout(addGPTButton, 500);
+function addCSS() {
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.type = "text/css";
+  link.href =
+    "https://github.com/niltonheck/discord-experiment/blob/draft/hardcore-grothendieck/src/styles.css";
+  document.head.appendChild(link);
+}
 
-setInterval(addGPTButton, 200);
-// addGPTButton();
+function bootstrap() {
+  // load the css
+  addCSS();
+
+  // Check for new messages after every 200ms
+  setInterval(addGPTButton, 200);
+}
+
+bootstrap();

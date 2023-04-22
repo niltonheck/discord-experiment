@@ -120,12 +120,6 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"src/index.js":[function(require,module,exports) {
 function addGPTButton() {
   var chatBubbles = document.querySelectorAll("li[id*=chat-messages]");
-
-  /**
-   * We need to:
-   *  - Keep track of new messages
-   *  - Delete addEventListener as messages are removed.
-   */
   var _loop = function _loop() {
     var chatBubble = chatBubbles[i];
     var content = chatBubble.querySelector("div[id*=message-content]").textContent;
@@ -153,11 +147,21 @@ function addGPTButton() {
     _loop();
   }
 }
+function addCSS() {
+  var link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.type = "text/css";
+  link.href = "https://github.com/niltonheck/discord-experiment/blob/draft/hardcore-grothendieck/src/styles.css";
+  document.head.appendChild(link);
+}
+function bootstrap() {
+  // load the css
+  addCSS();
 
-// setTimeout(addGPTButton, 500);
-
-setInterval(addGPTButton, 200);
-// addGPTButton();
+  // Check for new messages after every 200ms
+  setInterval(addGPTButton, 200);
+}
+bootstrap();
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
