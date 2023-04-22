@@ -45,4 +45,4 @@ function addGPTButton() {
   }
 }
 
-setInterval(addGPTButton, 200);
+setInterval(addGPTButton, 300);

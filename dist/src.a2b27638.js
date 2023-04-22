@@ -150,7 +150,7 @@ function addGPTButton() {
     _loop();
   }
 }
-setInterval(addGPTButton, 200);
+setInterval(addGPTButton, 300);
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
