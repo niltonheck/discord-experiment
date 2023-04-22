@@ -1,39 +1,51 @@
 function addGPTButton() {
   const chatBubbles = document.querySelectorAll("li[id*=chat-messages]");
 
+  /**
+   * We need to:
+   *  - Keep track of new messages
+   *  - Delete addEventListener as messages are removed.
+   */
   for (let i = 0; i < chatBubbles.length; i++) {
     const chatBubble = chatBubbles[i];
     const content = chatBubble.querySelector(
       "div[id*=message-content]"
     ).textContent;
 
-    const el = document.createElement("button");
-    el.innerText = "Hei!";
-    el.addEventListener("click", function (e) {
-      // e.target.parentElement;
-      console.log(`Message content: ${content}`);
+    let findGptChatButton = chatBubble.querySelector(
+      `button[id=gpt-button-${chatBubble.id}]`
+    );
 
-      const gptResponse = `Blablabla at ${new Date()}`;
+    if (!findGptChatButton) {
+      findGptChatButton = document.createElement("button");
+      findGptChatButton.id = `gpt-button-${chatBubble.id}`;
+      findGptChatButton.innerText = "Hei!";
+      findGptChatButton.onclick = function (_) {
+        console.log(`Message content: ${content}`);
 
-      let findGptChatBubble = chatBubble.querySelector(
-        `div[id=gpt-response-${chatBubble.id}]`
-      );
+        const gptResponse = `Blablabla at ${new Date()}`;
 
-      if (!findGptChatBubble) {
-        findGptChatBubble = document.createElement("div");
-        findGptChatBubble.id = `gpt-response-${chatBubble.id}`;
-      }
+        let findGptChatBubble = chatBubble.querySelector(
+          `div[id=gpt-response-${chatBubble.id}]`
+        );
 
-      findGptChatBubble.innerText = gptResponse;
-      findGptChatBubble.style.border = "1px solid red";
+        if (!findGptChatBubble) {
+          findGptChatBubble = document.createElement("div");
+          findGptChatBubble.id = `gpt-response-${chatBubble.id}`;
+        }
 
-      chatBubble.appendChild(findGptChatBubble);
-    });
+        findGptChatBubble.innerText = gptResponse;
+        findGptChatBubble.style.border = "1px solid red";
 
-    chatBubble.appendChild(el);
+        chatBubble.appendChild(findGptChatBubble);
+      };
+
+      chatBubble.appendChild(findGptChatButton);
+    }
   }
 }
 
 // setTimeout(addGPTButton, 500);
 
+setInterval(addGPTButton, 200);
 // addGPTButton();
