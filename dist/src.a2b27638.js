@@ -129,7 +129,7 @@ function addGPTButton() {
       findGptChatWraooer.id = "gpt-button-wrapper-".concat(chatBubble.id);
       var findGptChatButton = document.createElement("button");
       findGptChatButton.id = "gpt-button-".concat(chatBubble.id);
-      findGptChatButton.innerText = "Hei!";
+      findGptChatButton.innerHTML = "<img src=\"./openailogo.png\" /> Ask ChatGPT-4";
       findGptChatButton.onclick = function (_) {
         console.log("Message content: ".concat(content));
         var gptResponse = "Blablabla at ".concat(new Date());

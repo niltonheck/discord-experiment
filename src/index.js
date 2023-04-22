@@ -17,7 +17,7 @@ function addGPTButton() {
 
       const findGptChatButton = document.createElement("button");
       findGptChatButton.id = `gpt-button-${chatBubble.id}`;
-      findGptChatButton.innerText = "Hei!";
+      findGptChatButton.innerHTML = `<img src="./openailogo.png" /> Ask ChatGPT-4`;
       findGptChatButton.onclick = function (_) {
         console.log(`Message content: ${content}`);
 
