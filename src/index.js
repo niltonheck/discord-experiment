@@ -41,12 +41,16 @@ function addGPTButton() {
 }
 
 function addCSS() {
-  const link = document.createElement("link");
-  link.rel = "stylesheet";
-  link.type = "text/css";
-  link.href =
-    "https://github.com/niltonheck/discord-experiment/blob/draft/hardcore-grothendieck/src/styles.css";
-  document.head.appendChild(link);
+  fetch(
+    "https://raw.githubusercontent.com/niltonheck/discord-experiment/draft/hardcore-grothendieck/src/styles.css"
+  )
+    .then((response) => response.text())
+    .then((data) => {
+      const style = document.createElement("style");
+      style.textContent = data;
+      document.head.appendChild(style);
+    })
+    .catch((error) => console.log(error));
 }
 
 function bootstrap() {
