@@ -1,3 +1,5 @@
+import "./styles.css";
+
 function addGPTButton() {
   const chatBubbles = document.querySelectorAll("li[id*=chat-messages]");
 
@@ -7,12 +9,15 @@ function addGPTButton() {
       "div[id*=message-content]"
     ).textContent;
 
-    let findGptChatButton = chatBubble.querySelector(
-      `button[id=gpt-button-${chatBubble.id}]`
+    let findGptChatWraooer = chatBubble.querySelector(
+      `div[id=gpt-button-wrapper-${chatBubble.id}]`
     );
 
-    if (!findGptChatButton) {
-      findGptChatButton = document.createElement("button");
+    if (!findGptChatWraooer) {
+      findGptChatWraooer = document.createElement("div");
+      findGptChatWraooer.id = `gpt-button-wrapper-${chatBubble.id}`;
+
+      const findGptChatButton = document.createElement("button");
       findGptChatButton.id = `gpt-button-${chatBubble.id}`;
       findGptChatButton.innerText = "Hei!";
       findGptChatButton.onclick = function (_) {
@@ -35,30 +40,11 @@ function addGPTButton() {
         chatBubble.appendChild(findGptChatBubble);
       };
 
-      chatBubble.appendChild(findGptChatButton);
+      chatBubble.appendChild(findGptChatWraooer);
+
+      findGptChatWraooer.appendChild(findGptChatButton);
     }
   }
 }
 
-function addCSS() {
-  fetch(
-    "https://raw.githubusercontent.com/niltonheck/discord-experiment/draft/hardcore-grothendieck/src/styles.css"
-  )
-    .then((response) => response.text())
-    .then((data) => {
-      const style = document.createElement("style");
-      style.textContent = data;
-      document.head.appendChild(style);
-    })
-    .catch((error) => console.log(error));
-}
-
-function bootstrap() {
-  // load the css
-  addCSS();
-
-  // Check for new messages after every 200ms
-  setInterval(addGPTButton, 200);
-}
-
-bootstrap();
+setInterval(addGPTButton, 200);
