@@ -1,6 +1,5 @@
 function addGPTButton() {
   const chatBubbles = document.querySelectorAll("li[id*=chat-messages]");
-  console.log(chatBubbles);
 
   for (let i = 0; i < chatBubbles.length; i++) {
     const chatBubble = chatBubbles[i];

@@ -120,7 +120,6 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"src/index.js":[function(require,module,exports) {
 function addGPTButton() {
   var chatBubbles = document.querySelectorAll("li[id*=chat-messages]");
-  console.log(chatBubbles);
   var _loop = function _loop() {
     var chatBubble = chatBubbles[i];
     var content = chatBubble.querySelector("div[id*=message-content]").textContent;
