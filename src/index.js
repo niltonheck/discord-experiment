@@ -4,8 +4,9 @@ function addGPTButton() {
 
   for (let i = 0; i < chatBubbles.length; i++) {
     const chatBubble = chatBubbles[i];
-    const content = chatBubble.querySelector("div[id*=message-content]")
-      .textContent;
+    const content = chatBubble.querySelector(
+      "div[id*=message-content]"
+    ).textContent;
 
     const el = document.createElement("button");
     el.innerText = "Hei!";
@@ -36,4 +37,4 @@ function addGPTButton() {
 
 // setTimeout(addGPTButton, 500);
 
-addGPTButton();
+// addGPTButton();
