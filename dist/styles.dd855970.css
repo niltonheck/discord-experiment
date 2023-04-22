@@ -13,6 +13,11 @@ button[id^="gpt-button"] {
   border-radius: 8px 8px 8px 8px;
   line-height: 16px;
   cursor: pointer;
+  display: flex;
+}
+
+button[id^="gpt-button"] > img {
+  margin-right: 10px;
 }
 
 button[id^="gpt-button"]:hover {
