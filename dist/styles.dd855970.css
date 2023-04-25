@@ -28,5 +28,13 @@ button[id^="gpt-button"]:hover {
   color: rgba(219, 222, 225, 1);
 }
 
+div[id^="div[id=gpt-response"] {
+  margin-left: 72px;
+  margin-top: 10px;
+  background-color: #2b2d31;
+  padding: 10px;
+  color: #ffffff;
+}
+
 
 /*# sourceMappingURL=/styles.dd855970.css.map */

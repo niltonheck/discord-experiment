@@ -27,3 +27,11 @@ button[id^="gpt-button"]:hover {
   border-color: rgba(255, 255, 255, 0.8);
   color: rgba(219, 222, 225, 1);
 }
+
+div[id^="div[id=gpt-response"] {
+  margin-left: 72px;
+  margin-top: 10px;
+  background-color: #2b2d31;
+  padding: 10px;
+  color: #ffffff;
+}
