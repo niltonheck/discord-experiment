@@ -17,8 +17,10 @@ function fetchGPTAnswer(GPTChatBubble, chatBubbleId) {
   fetch(
     `${_glimelab_endpoint}/messages/?serverId=${serverId}&channelId=${channelId}&messageId=${messageId}`
   )
-    .then((data) => {
-      console.log(data.json());
+    .then((response) => response.json())
+    .then((json) => {
+      console.log('Found!');
+      console.log(json);
     })
     .catch((_) => {
       // console.log(err);

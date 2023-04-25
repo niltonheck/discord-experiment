@@ -136,8 +136,11 @@ function fetchGPTAnswer(GPTChatBubble, chatBubbleId) {
     serverId = _getMessageIds.serverId,
     channelId = _getMessageIds.channelId,
     messageId = _getMessageIds.messageId;
-  fetch("".concat(_glimelab_endpoint, "/messages/?serverId=").concat(serverId, "&channelId=").concat(channelId, "&messageId=").concat(messageId)).then(function (data) {
-    console.log(data.json());
+  fetch("".concat(_glimelab_endpoint, "/messages/?serverId=").concat(serverId, "&channelId=").concat(channelId, "&messageId=").concat(messageId)).then(function (response) {
+    return response.json();
+  }).then(function (json) {
+    console.log('Found!');
+    console.log(json);
   }).catch(function (_) {
     // console.log(err);
   });
