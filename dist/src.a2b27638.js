@@ -139,15 +139,13 @@ function fetchGPTAnswer(GPTChatBubble, chatBubbleId) {
   fetch("".concat(_glimelab_endpoint, "/messages/?serverId=").concat(serverId, "&channelId=").concat(channelId, "&messageId=").concat(messageId)).then(function (response) {
     return response.json();
   }).then(function (json) {
-    console.log('Found!');
+    console.log("Found!");
     console.log(json);
+    setGPTResponse(GPTChatBubble, "".concat(json.answer));
   }).catch(function (_) {
     // console.log(err);
   });
-
-  // setGPTResponse(GPTChatBubble, `${serverId}, ${channelId}, ${messageId}`);
 }
-
 function setGPTResponse(GPTChatBubble, response) {
   GPTChatBubble.style.display = "block";
   GPTChatBubble.innerText = response;

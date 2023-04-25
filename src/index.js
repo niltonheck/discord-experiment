@@ -19,14 +19,14 @@ function fetchGPTAnswer(GPTChatBubble, chatBubbleId) {
   )
     .then((response) => response.json())
     .then((json) => {
-      console.log('Found!');
+      console.log("Found!");
       console.log(json);
+
+      setGPTResponse(GPTChatBubble, `${json.answer}`);
     })
     .catch((_) => {
       // console.log(err);
     });
-
-  // setGPTResponse(GPTChatBubble, `${serverId}, ${channelId}, ${messageId}`);
 }
 
 function setGPTResponse(GPTChatBubble, response) {
