@@ -16,9 +16,13 @@ function fetchGPTAnswer(GPTChatBubble, chatBubbleId) {
 
   fetch(
     `${_glimelab_endpoint}/messages/?serverId=${serverId}&channelId=${channelId}&messageId=${messageId}`
-  ).then((data) => {
-    console.log(data);
-  });
+  )
+    .then((data) => {
+      console.log(data.json());
+    })
+    .catch((_) => {
+      // console.log(err);
+    });
 
   // setGPTResponse(GPTChatBubble, `${serverId}, ${channelId}, ${messageId}`);
 }

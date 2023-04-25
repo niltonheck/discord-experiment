@@ -137,7 +137,9 @@ function fetchGPTAnswer(GPTChatBubble, chatBubbleId) {
     channelId = _getMessageIds.channelId,
     messageId = _getMessageIds.messageId;
   fetch("".concat(_glimelab_endpoint, "/messages/?serverId=").concat(serverId, "&channelId=").concat(channelId, "&messageId=").concat(messageId)).then(function (data) {
-    console.log(data);
+    console.log(data.json());
+  }).catch(function (_) {
+    // console.log(err);
   });
 
   // setGPTResponse(GPTChatBubble, `${serverId}, ${channelId}, ${messageId}`);
