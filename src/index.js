@@ -1,4 +1,4 @@
-var _glimelab_endpoint = "https://discord-chat-webservice.onrender.com";
+var _glimelab_endpoint = "http://127.0.0.1:8080";
 
 function getMessageIds(chatBubbleId) {
   const URI = window.location.pathname.split("/");

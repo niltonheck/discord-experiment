@@ -118,7 +118,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
-var _glimelab_endpoint = "https://discord-chat-webservice.onrender.com";
+var _glimelab_endpoint = "http://127.0.0.1:8080";
 function getMessageIds(chatBubbleId) {
   var URI = window.location.pathname.split("/");
   var serverId = URI[2];
