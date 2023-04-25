@@ -118,6 +118,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
+function fetchGPTAnswer(chatBubbleId) {
+  console.log(chatBubbleId);
+}
 function addGPTButton() {
   var chatBubbles = document.querySelectorAll("li[id*=chat-messages]");
   var _loop = function _loop() {
@@ -144,6 +147,7 @@ function addGPTButton() {
       };
       chatBubble.appendChild(findGptChatWraooer);
       findGptChatWraooer.appendChild(findGptChatButton);
+      fetchGPTAnswer(chatBubble.id);
     }
   };
   for (var i = 0; i < chatBubbles.length; i++) {

@@ -1,3 +1,7 @@
+function fetchGPTAnswer(chatBubbleId) {
+  console.log(chatBubbleId);
+}
+
 function addGPTButton() {
   const chatBubbles = document.querySelectorAll("li[id*=chat-messages]");
 
@@ -41,6 +45,8 @@ function addGPTButton() {
       chatBubble.appendChild(findGptChatWraooer);
 
       findGptChatWraooer.appendChild(findGptChatButton);
+
+      fetchGPTAnswer(chatBubble.id);
     }
   }
 }
