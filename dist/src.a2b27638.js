@@ -118,6 +118,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
+var _glimelab_endpoint = "https://discord-chat-webservice.onrender.com";
 function getMessageIds(chatBubbleId) {
   var URI = window.location.pathname.split("/");
   var serverId = URI[2];
@@ -135,8 +136,13 @@ function fetchGPTAnswer(GPTChatBubble, chatBubbleId) {
     serverId = _getMessageIds.serverId,
     channelId = _getMessageIds.channelId,
     messageId = _getMessageIds.messageId;
-  setGPTResponse(GPTChatBubble, "".concat(serverId, ", ").concat(channelId, ", ").concat(messageId));
+  fetch("".concat(_glimelab_endpoint, "/messages/?serverId=").concat(serverId, "&channelId=").concat(channelId, "&messageId=").concat(messageId)).then(function (data) {
+    console.log(data);
+  });
+
+  // setGPTResponse(GPTChatBubble, `${serverId}, ${channelId}, ${messageId}`);
 }
+
 function setGPTResponse(GPTChatBubble, response) {
   GPTChatBubble.style.display = "block";
   GPTChatBubble.innerText = response;
@@ -150,7 +156,9 @@ function addGPTButton() {
     if (!findGptChatWraooer) {
       findGptChatWraooer = document.createElement("div");
       findGptChatWraooer.id = "gpt-button-wrapper-".concat(chatBubble.id);
-      console.log("Message content: ".concat(content));
+
+      // console.log(`Message content: ${content}`);
+
       var findGptChatBubble = chatBubble.querySelector("div[id=gpt-response-".concat(chatBubble.id, "]"));
       if (!findGptChatBubble) {
         findGptChatBubble = document.createElement("div");

@@ -1,3 +1,5 @@
+var _glimelab_endpoint = "https://discord-chat-webservice.onrender.com";
+
 function getMessageIds(chatBubbleId) {
   const URI = window.location.pathname.split("/");
   const serverId = URI[2];
@@ -12,7 +14,13 @@ function getMessageIds(chatBubbleId) {
 function fetchGPTAnswer(GPTChatBubble, chatBubbleId) {
   const { serverId, channelId, messageId } = getMessageIds(chatBubbleId);
 
-  setGPTResponse(GPTChatBubble, `${serverId}, ${channelId}, ${messageId}`);
+  fetch(
+    `${_glimelab_endpoint}/messages/?serverId=${serverId}&channelId=${channelId}&messageId=${messageId}`
+  ).then((data) => {
+    console.log(data);
+  });
+
+  // setGPTResponse(GPTChatBubble, `${serverId}, ${channelId}, ${messageId}`);
 }
 
 function setGPTResponse(GPTChatBubble, response) {
@@ -37,7 +45,7 @@ function addGPTButton() {
       findGptChatWraooer = document.createElement("div");
       findGptChatWraooer.id = `gpt-button-wrapper-${chatBubble.id}`;
 
-      console.log(`Message content: ${content}`);
+      // console.log(`Message content: ${content}`);
 
       let findGptChatBubble = chatBubble.querySelector(
         `div[id=gpt-response-${chatBubble.id}]`
