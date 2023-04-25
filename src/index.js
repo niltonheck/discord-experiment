@@ -60,8 +60,6 @@ function addGPTButton() {
         findGptChatBubble.id = `gpt-response-${chatBubble.id}`;
       }
 
-      findGptChatBubble.style.border = "1px solid red";
-
       findGptChatBubble.style.display = "none";
 
       const findGptChatButton = document.createElement("button");

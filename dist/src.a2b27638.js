@@ -164,7 +164,6 @@ function addGPTButton() {
         findGptChatBubble = document.createElement("div");
         findGptChatBubble.id = "gpt-response-".concat(chatBubble.id);
       }
-      findGptChatBubble.style.border = "1px solid red";
       findGptChatBubble.style.display = "none";
       var findGptChatButton = document.createElement("button");
       findGptChatButton.id = "gpt-button-".concat(chatBubble.id);
