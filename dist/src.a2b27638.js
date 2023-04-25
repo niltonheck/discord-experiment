@@ -186,7 +186,9 @@ function addGPTButton() {
           console.log("Found!");
           console.log(json);
           setGPTResponse(findGptChatBubble, "".concat(json.answer));
-        }).catch(function (_) {});
+        }).catch(function (_) {
+          setGPTResponse(findGptChatBubble, "Failure to fetch an answer.");
+        });
       };
       chatBubble.appendChild(findGptChatWraooer);
       chatBubble.appendChild(findGptChatBubble);

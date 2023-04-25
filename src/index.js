@@ -85,7 +85,9 @@ function addGPTButton() {
 
             setGPTResponse(findGptChatBubble, `${json.answer}`);
           })
-          .catch((_) => {});
+          .catch((_) => {
+            setGPTResponse(findGptChatBubble, `Failure to fetch an answer.`);
+          });
       };
 
       chatBubble.appendChild(findGptChatWraooer);
