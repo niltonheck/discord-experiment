@@ -1,5 +1,49 @@
 var _glimelab_endpoint = "http://127.0.0.1:8080";
 
+var _glimelab_filter = "all";
+
+function addNamespaceSelector() {
+  const body = document.querySelector("body");
+  console.log(body);
+
+  const _default = "all";
+
+  const options = [
+    {
+      title: "All (default)",
+      value: "all",
+    },
+    {
+      title: "Web only",
+      value: "web-only",
+    },
+    {
+      title: "Chat only",
+      value: "chat-only",
+    },
+  ];
+
+  const isDefault = (value) => (value == _default ? "selected" : "");
+
+  const optionsHtml = options.map((opt) => {
+    return `<option value="${opt.value}" ${isDefault(opt.value)}>${
+      opt.title
+    }</option>`;
+  });
+
+  const wrapper = document.createElement("div");
+  wrapper.id = "options-selector-wrapper";
+  wrapper.innerHTML = `<form><label>Filter</label><select id="options-selector"><option>Filter</option>${optionsHtml}</select>`;
+
+  body.appendChild(wrapper);
+
+  document
+    .getElementById("options-selector")
+    .addEventListener("change", (e) => {
+      console.log(e.target.value);
+    });
+}
+
 function getMessageIds(chatBubbleId) {
   const URI = window.location.pathname.split("/");
   const serverId = URI[2];
@@ -68,6 +112,14 @@ function addGPTButton() {
       findGptChatButton.onclick = function (_) {
         const { serverId, channelId, messageId } = getMessageIds(chatBubble.id);
 
+        console.log({
+          question: content,
+          serverId: serverId,
+          channelId: channelId,
+          messageId: messageId,
+          filter: _glimelab_filter,
+        });
+
         fetch(`${_glimelab_endpoint}/messages`, {
           method: "POST",
           headers: {
@@ -78,6 +130,7 @@ function addGPTButton() {
             serverId: serverId,
             channelId: channelId,
             messageId: messageId,
+            filter: _glimelab_filter,
           }),
         })
           .then((response) => response.json())
@@ -104,3 +157,5 @@ function addGPTButton() {
 }
 
 setInterval(addGPTButton, 300);
+
+addNamespaceSelector();

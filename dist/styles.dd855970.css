@@ -40,5 +40,26 @@ div[id^="gpt-response"] {
   border: rgb(43, 45, 49);
 }
 
+#options-selector-wrapper {
+  background-color: red;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: #2b2d31;
+  border-color: #000000;
+  border-radius: 8px 8px 8px 8px;
+  line-height: 16px;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.875rem;
+}
+
+#options-selector-wrapper > form > label {
+  margin-right: 10px;
+  display: inline-block;
+  color: rgba(219, 222, 225, 1);
+}
+
 
 /*# sourceMappingURL=/styles.dd855970.css.map */

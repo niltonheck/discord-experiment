@@ -119,6 +119,35 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"src/index.js":[function(require,module,exports) {
 var _glimelab_endpoint = "http://127.0.0.1:8080";
+var _glimelab_filter = "all";
+function addNamespaceSelector() {
+  var body = document.querySelector("body");
+  console.log(body);
+  var _default = "all";
+  var options = [{
+    title: "All (default)",
+    value: "all"
+  }, {
+    title: "Web only",
+    value: "web-only"
+  }, {
+    title: "Chat only",
+    value: "chat-only"
+  }];
+  var isDefault = function isDefault(value) {
+    return value == _default ? "selected" : "";
+  };
+  var optionsHtml = options.map(function (opt) {
+    return "<option value=\"".concat(opt.value, "\" ").concat(isDefault(opt.value), ">").concat(opt.title, "</option>");
+  });
+  var wrapper = document.createElement("div");
+  wrapper.id = "options-selector-wrapper";
+  wrapper.innerHTML = "<form><label>Filter</label><select id=\"options-selector\"><option>Filter</option>".concat(optionsHtml, "</select>");
+  body.appendChild(wrapper);
+  document.getElementById("options-selector").addEventListener("change", function (e) {
+    console.log(e.target.value);
+  });
+}
 function getMessageIds(chatBubbleId) {
   var URI = window.location.pathname.split("/");
   var serverId = URI[2];
@@ -173,6 +202,13 @@ function addGPTButton() {
           serverId = _getMessageIds2.serverId,
           channelId = _getMessageIds2.channelId,
           messageId = _getMessageIds2.messageId;
+        console.log({
+          question: content,
+          serverId: serverId,
+          channelId: channelId,
+          messageId: messageId,
+          filter: _glimelab_filter
+        });
         fetch("".concat(_glimelab_endpoint, "/messages"), {
           method: "POST",
           headers: {
@@ -182,7 +218,8 @@ function addGPTButton() {
             question: content,
             serverId: serverId,
             channelId: channelId,
-            messageId: messageId
+            messageId: messageId,
+            filter: _glimelab_filter
           })
         }).then(function (response) {
           return response.json();
@@ -205,6 +242,7 @@ function addGPTButton() {
   }
 }
 setInterval(addGPTButton, 300);
+addNamespaceSelector();
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -230,7 +268,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45975" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37151" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
