@@ -145,7 +145,7 @@ function addGPTButton() {
       const versionSelector = document.createElement("div");
 
       const prevButton = document.createElement("button");
-      nextButton.id = "btn1";
+      prevButton.id = "btn1";
       prevButton.innerText = "Previous";
       prevButton.onclick = () => {
         alert("Prev!");
