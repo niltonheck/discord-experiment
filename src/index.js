@@ -78,6 +78,8 @@ function setGPTResponse(GPTChatBubble, response) {
   GPTChatBubble.innerText = response;
 }
 
+const _messages = {};
+
 function addGPTButton() {
   const chatBubbles = document.querySelectorAll("li[id*=chat-messages]");
 
@@ -127,10 +129,14 @@ function addGPTButton() {
         })
           .then((response) => response.json())
           .then((json) => {
-            console.log("Found!");
-            console.log(json);
+            _messages[json.messageId] = {
+              selected: 0,
+              versions: json.versions,
+            };
 
-            const answer = json.versions[json.versions.length - 1].answer;
+            const answer =
+              _messages[json.messageId][_messages[json.messageId].selected]
+                .answer;
 
             setGPTResponse(findGptChatBubble, `${answer}`);
           })

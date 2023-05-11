@@ -179,6 +179,7 @@ function setGPTResponse(GPTChatBubble, response) {
   GPTChatBubble.style.display = "block";
   GPTChatBubble.innerText = response;
 }
+var _messages = {};
 function addGPTButton() {
   var chatBubbles = document.querySelectorAll("li[id*=chat-messages]");
   var _loop = function _loop() {
@@ -217,9 +218,11 @@ function addGPTButton() {
         }).then(function (response) {
           return response.json();
         }).then(function (json) {
-          console.log("Found!");
-          console.log(json);
-          var answer = json.versions[json.versions.length - 1].answer;
+          _messages[json.messageId] = {
+            selected: 0,
+            versions: json.versions
+          };
+          var answer = _messages[json.messageId][_messages[json.messageId].selected].answer;
           setGPTResponse(findGptChatBubble, "".concat(answer));
         }).catch(function (_) {
           setGPTResponse(findGptChatBubble, "Failure to fetch an answer.");
