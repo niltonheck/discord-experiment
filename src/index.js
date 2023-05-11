@@ -112,14 +112,6 @@ function addGPTButton() {
       findGptChatButton.onclick = function (_) {
         const { serverId, channelId, messageId } = getMessageIds(chatBubble.id);
 
-        console.log({
-          question: content,
-          serverId: serverId,
-          channelId: channelId,
-          messageId: messageId,
-          filter: _glimelab_filter,
-        });
-
         fetch(`${_glimelab_endpoint}/messages`, {
           method: "POST",
           headers: {
@@ -138,7 +130,9 @@ function addGPTButton() {
             console.log("Found!");
             console.log(json);
 
-            setGPTResponse(findGptChatBubble, `${json.answer}`);
+            const answer = json.versions[json.versions.length - 1].answer;
+
+            setGPTResponse(findGptChatBubble, `${answer}`);
           })
           .catch((_) => {
             setGPTResponse(findGptChatBubble, `Failure to fetch an answer.`);

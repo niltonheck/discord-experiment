@@ -202,13 +202,6 @@ function addGPTButton() {
           serverId = _getMessageIds2.serverId,
           channelId = _getMessageIds2.channelId,
           messageId = _getMessageIds2.messageId;
-        console.log({
-          question: content,
-          serverId: serverId,
-          channelId: channelId,
-          messageId: messageId,
-          filter: _glimelab_filter
-        });
         fetch("".concat(_glimelab_endpoint, "/messages"), {
           method: "POST",
           headers: {
@@ -226,7 +219,8 @@ function addGPTButton() {
         }).then(function (json) {
           console.log("Found!");
           console.log(json);
-          setGPTResponse(findGptChatBubble, "".concat(json.answer));
+          var answer = json.versions[json.versions.length - 1].answer;
+          setGPTResponse(findGptChatBubble, "".concat(answer));
         }).catch(function (_) {
           setGPTResponse(findGptChatBubble, "Failure to fetch an answer.");
         });
