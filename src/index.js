@@ -145,12 +145,14 @@ function addGPTButton() {
       const versionSelector = document.createElement("div");
 
       const prevButton = document.createElement("button");
+      nextButton.id = "btn1";
       prevButton.innerText = "Previous";
       prevButton.onclick = () => {
         alert("Prev!");
       };
 
       const nextButton = document.createElement("button");
+      nextButton.id = "btn2";
       nextButton.innerText = "Next";
       nextButton.onclick = () => {
         alert("Next!");

@@ -221,11 +221,13 @@ function addGPTButton() {
 
       var versionSelector = document.createElement("div");
       var prevButton = document.createElement("button");
+      nextButton.id = "btn1";
       prevButton.innerText = "Previous";
       prevButton.onclick = function () {
         alert("Prev!");
       };
       var nextButton = document.createElement("button");
+      nextButton.id = "btn2";
       nextButton.innerText = "Next";
       nextButton.onclick = function () {
         alert("Next!");
