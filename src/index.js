@@ -85,7 +85,7 @@ function setGPTResponse(GPTChatBubble, response, messageId) {
 
   // update arrows
 
-  GPTChatBubble.appendChild(el);
+  GPTChatBubble.appendChild(responseEl);
 }
 
 const _messages = {};
