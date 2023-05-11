@@ -40,7 +40,7 @@ function addNamespaceSelector() {
   document
     .getElementById("options-selector")
     .addEventListener("change", (e) => {
-      console.log(e.target.value);
+      _glimelab_filter = e.target.value;
     });
 }
 

@@ -145,7 +145,7 @@ function addNamespaceSelector() {
   wrapper.innerHTML = "<form><label>Filter</label><select id=\"options-selector\"><option>Filter</option>".concat(optionsHtml, "</select>");
   body.appendChild(wrapper);
   document.getElementById("options-selector").addEventListener("change", function (e) {
-    console.log(e.target.value);
+    _glimelab_filter = e.target.value;
   });
 }
 function getMessageIds(chatBubbleId) {
