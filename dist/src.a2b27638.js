@@ -181,9 +181,22 @@ function fetchGPTAnswer(GPTChatBubble, chatBubbleId) {
 function setGPTResponse(GPTChatBubble, response, messageId) {
   var responseEl = document.createElement("div").innerText = response;
   GPTChatBubble.style.display = "block";
-
   // update arrows
 
+  var previous = GPTChatBubble.getElementById("btn1");
+  if (previous) {
+    if (_messages[messageId].versions.length == 1 || _messages[messageId].selected == 0) {
+      previous.setAttribute("disabled", "true");
+    } else {
+      previous.setAttribute("disabled", "false");
+    }
+  }
+  var next = GPTChatBubble.getElementById("btn2");
+  if (_messages[messageId].versions.length == 1 && _messages[messageId].selected == _messages[messageId].versions.length - 1) {
+    next.setAttribute("disabled", "true");
+  } else {
+    next.setAttribute("disabled", "false");
+  }
   GPTChatBubble.appendChild(responseEl);
 }
 var _messages = {};
