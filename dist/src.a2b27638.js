@@ -168,16 +168,23 @@ function fetchGPTAnswer(GPTChatBubble, chatBubbleId) {
   fetch("".concat(_glimelab_endpoint, "/messages/?serverId=").concat(serverId, "&channelId=").concat(channelId, "&messageId=").concat(messageId)).then(function (response) {
     return response.json();
   }).then(function (json) {
-    console.log("Found!");
-    console.log(json);
-    setGPTResponse(GPTChatBubble, "".concat(json.answer));
+    _messages[json.messageId] = {
+      selected: json.versions.length - 1,
+      versions: json.versions
+    };
+    var answer = _messages[json.messageId][_messages[json.messageId].selected].answer;
+    setGPTResponse(GPTChatBubble, "".concat(answer), json.messageId);
   }).catch(function (_) {
     // console.log(err);
   });
 }
-function setGPTResponse(GPTChatBubble, response) {
+function setGPTResponse(GPTChatBubble, response, messageId) {
+  var responseEl = document.createElement("div").innerText = response;
   GPTChatBubble.style.display = "block";
-  GPTChatBubble.innerText = response;
+
+  // update arrows
+
+  GPTChatBubble.appendChild(el);
 }
 var _messages = {};
 function addGPTButton() {
@@ -195,6 +202,24 @@ function addGPTButton() {
         findGptChatBubble.id = "gpt-response-".concat(chatBubble.id);
       }
       findGptChatBubble.style.display = "none";
+
+      // Create the arrows
+      // <div><button>Prev</button><button>Next</button></div>
+
+      var versionSelector = document.createElement("div");
+      var prevButton = document.createElement("button");
+      prevButton.innerText = "Previous";
+      prevButton.onclick = function () {
+        alert("Prev!");
+      };
+      var nextButton = document.createElement("button");
+      nextButton.innerText = "Next";
+      nextButton.onclick = function () {
+        alert("Next!");
+      };
+      versionSelector.appendChild(prevButton);
+      versionSelector.appendChild(nextButton);
+      findGptChatBubble.appendChild(versionSelector);
       var findGptChatButton = document.createElement("button");
       findGptChatButton.id = "gpt-button-".concat(chatBubble.id);
       findGptChatButton.innerHTML = "<img style=\"height: 16px; width: 16px;\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAr5JREFUOI1tk11InnUYxn/X/3n8Wr6KgtDaigYFHXQQUQhRbESrBh1E0Fz6CiNIYoM62JhsoI/mmrYYRdJBDBakjjJoHTktomgnK6iDOvUotFWCH+/rnPk+z//qoAitXcf3fd3wu69LttmuXR+9uScN+TngENCMue6EoWp39i23kbYb/LN83eZKSJLxPIb1VLUum7eAGSCR9XXzLX+w2Jdt7DDQ+HhDqX35osz6Wjk7JqTmiaEuiTHBvKUJ4ZpNF/CAzRPV3uwP2aZ1arjb5j2gPcAjBFZjZAJok3RirWfwasel86Wll09VAUqTw+/K3FvpzZ5X6+TQ09FMy+oyvpzXpQ8leXE02A2VW7uHS4039hEYAw4YZos07W/YzKtFyu91oiNEc8aof613cG4bGTnoh+amG+cJfI/CBTVwH2IpzfOf81SvA7WotC0AD6chmf0fXnsoBH0hOILjaNzUS+t7OAFJZ5AfB5qC85UgsxqLeOffl6mluXdhyQ6vrfUMXl0rZ7OYM5LLpQW+coh3VeZ5BvisZgaCxSdWHNA3w6lNNxQXhQ+hqB3/hjkiryj6irMsFjGcMxxO68RIzayUFphDybHq3uLJ5kX6ZM62Tr4xCi4QY8DnecJGauoBnMQlmZYQa7QDW4JrUHzXvMiFUM/HwCnjqQjPYg38F1EaeQr4MeiOxhUgibX693PxoEy7/2QeOAlJ5/peTkp+NKJ/I1uaGNmPeDugsbD8Yv8aZkZ1W2c3erKFSjnrbWzgnko5e0EU+0oL/GQ4GPBUWoS7gUYpThuOr5YHv5RtSh+Odqhu65rhF8G0USJ8WOZ+pNOVcnbZ2C2Tw5cQqt7c3ee+vtrOLnz6TlPLZvVVyweAAngO6XSeJNNhK28LgePAwZjz2PrR7LfbtnG7ShMj+6U4BHQCy5iZoo6hm0eyX7fP/QWAi048PHhBHwAAAABJRU5ErkJggg==\" /> Ask ChatGPT-4";
@@ -219,13 +244,13 @@ function addGPTButton() {
           return response.json();
         }).then(function (json) {
           _messages[json.messageId] = {
-            selected: 0,
+            selected: json.versions.length - 1,
             versions: json.versions
           };
           var answer = _messages[json.messageId][_messages[json.messageId].selected].answer;
-          setGPTResponse(findGptChatBubble, "".concat(answer));
+          setGPTResponse(findGptChatBubble, "".concat(answer), messageId);
         }).catch(function (_) {
-          setGPTResponse(findGptChatBubble, "Failure to fetch an answer.");
+          setGPTResponse(findGptChatBubble, "Failure to fetch an answer.", messageId);
         });
       };
       chatBubble.appendChild(findGptChatWraooer);
